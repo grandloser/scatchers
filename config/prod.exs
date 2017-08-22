@@ -27,17 +27,6 @@ config :scatchers, Scatchers.Mailer,
   ssl: true, # can be `true`
   retries: 1
 
-config :scatchers, Scatchers.Mailer,
-  adapter: Bamboo.SMTPAdapter,
-  server: "smtp.gmail.com",
-  port: 465,
-  username: "busanmaninseoul@gmail.com",
-  password: "qntksaos2",
-  tls: :if_available, # can be `:always` or `:never`
-  ssl: true, # can be `true`
-  retries: 1
-
-
 # Do not print debug messages in production
 config :logger, level: :info
 
