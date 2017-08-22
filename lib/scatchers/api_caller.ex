@@ -8,6 +8,7 @@ defmodule Scatchers.APICaller do
     |> Enum.map(fn x -> Floki.find(x, "a") end)
     res
     IO.puts "API call end"
+    res
   end
 
 end
