@@ -18,10 +18,12 @@ defmodule Scatchers.Catchers do
   end
 
   defp schedule_work(type) do
+    IO.puts "schedule_work #{inspect type}"
     Process.send_after(self(), {type, :scrape}, @interval)
   end
 
   def handle_info({flag, :scrape}, state) do
+    IO.puts "scrape starats"
     state =
       APICaller.pull_search_result
       |> update_result(flag, state)
