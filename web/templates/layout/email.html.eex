@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <h1>안녕하세요 부산맨님. 새로운 아이템이 등록되었습니다.</h1>
+    <%= render @view_module, @view_template, assigns %>
+    <p>The BusanManInSeoul Team.</p>
+  </body>
+</html>
+  

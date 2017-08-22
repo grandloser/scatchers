@@ -1,0 +1,16 @@
+<p>
+  <a href="<%= @ext.link %>" target="_blank">
+  <img src="<%= @ext.img_src %>">
+  </a>
+</p>
+
+<p>
+  <%= @ext.link %>
+</p>
+
+<p>
+  <strong> <%= @ext.subject %> </strong>
+</p>
+<p>
+  <%= @ext.price %>
+</p>
