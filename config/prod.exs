@@ -15,7 +15,17 @@ config :scatchers, Scatchers.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "infinite-inlet-86746.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
+  secret_key_base: "h3B+A+/KlVV/z232Ox/RzSfPRakFmCLwQOvn/D6EZwVycTFPfjWyMlLuRnpvL7ry"
+
+config :scatchers, Scatchers.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.gmail.com",
+  port: 465,
+  username: "busanmaninseoul@gmail.com",
+  password: "qntksaos2",
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: true, # can be `true`
+  retries: 1
 
 
 # Do not print debug messages in production
