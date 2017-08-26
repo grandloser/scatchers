@@ -9,7 +9,10 @@
 </p>
 
 <p>
-  <strong> <%= @ext.subject %> </strong>
+  <strong> <%= @ext.translated_subject %> </strong>
+</p>
+<p>
+  <%= @ext.subject %>
 </p>
 <p>
   <%= @ext.price %>

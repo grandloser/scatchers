@@ -1,6 +1,6 @@
 defmodule Scatchers.MisterSendo do
   use Bamboo.Phoenix, view: Scatchers.EmailView
-  alias Scatchers.Mailer
+  alias Scatchers.{Mailer, APICaller}
 
   def send_email(item) do
     ext = extract_data(item)
@@ -8,7 +8,7 @@ defmodule Scatchers.MisterSendo do
     |> to("brightbreath@gmail.com")
     |> cc("firefocs@gmail.com")
     |> from("no-reply@busanmaninseoul.com")
-    |> subject("[#{ext.price}] #{ext.subject}")
+    |> subject("[#{ext.price}] #{ext.translated_subject}")
     |> put_html_layout({Scatchers.LayoutView, "email.html"})
     |> render("new_item.html", ext: ext)
     |> Mailer.deliver_now
@@ -19,11 +19,13 @@ defmodule Scatchers.MisterSendo do
     image = extract_image(item)
     subject = extract_subject(item)
     price = extract_price(item)
+    translated_subject = APICaller.translate_to_korean(subject)
 
     %{
       link: link,
       img_src: image,
       subject: subject,
+      translated_subject: translated_subject,
       price: price
     }
   end

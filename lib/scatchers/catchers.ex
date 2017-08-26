@@ -1,6 +1,8 @@
 defmodule Scatchers.Catchers do
   use GenServer
 
+  require Logger
+
   alias Scatchers.{APICaller, MisterSendo}
 
   @interval 5_000
@@ -23,6 +25,7 @@ defmodule Scatchers.Catchers do
   end
 
   def handle_info({flag, :scrape}, state) do
+
     IO.puts "scrape starats"
     state =
       APICaller.pull_search_result
@@ -41,10 +44,10 @@ defmodule Scatchers.Catchers do
     end)
     |> Enum.reduce(state, fn x, state ->
       IO.puts "new one detected #{inspect Floki.attribute(x, "href")}"
-      if(flag != :init) do
+      if(flag == :init) do
         notification_sendo(x)
       else
-        IO.puts "init completed"
+        Logger.info "init completed"
       end
 
       Map.put(state, Floki.attribute(x, "href"), x)

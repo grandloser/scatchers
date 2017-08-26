@@ -22,12 +22,27 @@ config :scatchers, Scatchers.Mailer,
   adapter: Bamboo.SMTPAdapter,
   server: "smtp.gmail.com",
   port: 465,
-  username: "busanmaninseoul@gmail.com",
-  password: "qntksaos2",
+  username: System.get_env("EMAIL_ID"),
+  password: System.get_env("EMAIL_PW"),
   tls: :if_available, # can be `:always` or `:never`
   ssl: true, # can be `true`
   retries: 1
 
+config :scatchers, Scatchers.APICaller,
+  google_api_key: System.get_env("GOOGLE_API_KEY")
+
+
+config :logger,
+  backends: [{LoggerFileBackend, :info},
+             {LoggerFileBackend, :error}]
+
+config :logger, :info,
+  path: "logs/info.log",
+  level: :info
+
+config :logger, :error_log,
+  path: "logs/error.log",
+  level: :error
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

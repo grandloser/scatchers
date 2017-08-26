@@ -37,6 +37,8 @@ defmodule Scatchers.Mixfile do
      {:httpoison, "~> 0.11.0"},
      {:cowboy, "~> 1.0"},
      {:bamboo, "~> 0.7"},
-    {:bamboo_smtp, "~> 1.2.1"}]
+     {:poison, "~> 3.1", override: true},
+     {:logger_file_backend, "0.0.4"},
+     {:bamboo_smtp, "~> 1.2.1"}]
   end
 end
