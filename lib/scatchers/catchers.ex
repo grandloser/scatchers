@@ -6,6 +6,7 @@ defmodule Scatchers.Catchers do
   alias Scatchers.{APICaller, MisterSendo}
 
   @interval 5_000
+  @size_limit 150
 
   def start_link do
     IO.puts "started!@!!!!!!!!!!!!!!!!!!!!"
@@ -40,19 +41,25 @@ defmodule Scatchers.Catchers do
     |> Enum.filter( fn x ->
       href = x |> Floki.attribute("href")
 
-      !Map.has_key?(state, href)
+      !in_cache?(href)
     end)
-    |> Enum.reduce(state, fn x, state ->
+    |> Enum.each(fn x ->
       IO.puts "new one detected #{inspect Floki.attribute(x, "href")}"
-      if(flag == :init) do
+      if(flag != :init) do
         notification_sendo(x)
       else
         Logger.info "init completed"
       end
-
-      Map.put(state, Floki.attribute(x, "href"), x)
+      Cachex.set(:cache,Floki.attribute(x, "href"), x)
     end)
-    state
+    %{}
+  end
+
+  def in_cache?(href) do
+    case Cachex.get(:cache, href) do
+      {:missing, _} -> false
+      _ -> true
+    end
   end
 
   def notification_sendo(x) do

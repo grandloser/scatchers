@@ -13,6 +13,7 @@ defmodule Scatchers do
       supervisor(Scatchers.Supervisor, []),
       # Start your own worker by calling: Scatchers.Worker.start_link(arg1, arg2, arg3)
       # worker(Scatchers.Worker, [arg1, arg2, arg3]),
+      worker(Cachex, [:cache, [ limit: 150 ]]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

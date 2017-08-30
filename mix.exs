@@ -17,7 +17,7 @@ defmodule Scatchers.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Scatchers, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :httpoison, :bamboo]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :httpoison, :bamboo, :cachex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +39,7 @@ defmodule Scatchers.Mixfile do
      {:bamboo, "~> 0.7"},
      {:poison, "~> 3.1", override: true},
      {:logger_file_backend, "0.0.4"},
+     {:cachex, "~> 2.1"},
      {:bamboo_smtp, "~> 1.2.1"}]
   end
 end
