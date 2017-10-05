@@ -6,10 +6,11 @@ defmodule Scatchers.Supervisor do
    end
 
    def init(:ok) do
-     children = [
-       worker(Scatchers.Catchers, [], restart: :transient)
-     ]
 
-     Supervisor.init(children, strategy: :one_for_one)
+    children = Enum.reduce(1.. 15, [], fn num, acc -> 
+      acc ++ [worker(Scatchers.Catchers, [num], [restart: :transient, id: num])]
+    end)
+
+    Supervisor.init(children, strategy: :one_for_one)
    end
 end

@@ -8,9 +8,9 @@ defmodule Scatchers.Catchers do
   @interval 0
   @size_limit 150
 
-  def start_link do
-    IO.puts "started!@!!!!!!!!!!!!!!!!!!!!"
-    GenServer.start_link(__MODULE__, %{})
+  def start_link(num) do
+    IO.puts "#{num} :: started!@!!!!!!!!!!!!!!!!!!!!"
+    GenServer.start_link(__MODULE__, %{name: num})
   end
 
   def init(state) do
@@ -21,24 +21,21 @@ defmodule Scatchers.Catchers do
   end
 
   defp schedule_work(type) do
-    IO.puts "#{DateTime.utc_now()} :: schedule_work #{inspect type}"
+    # IO.puts "#{DateTime.utc_now()} :: #{inspect self()} :: schedule_work #{inspect type}"
     Process.send_after(self(), {type, :scrape}, @interval)
   end
 
-  def handle_info({flag, :scrape}, state) do
+  def handle_info({flag, :scrape}, %{name: num} = state) do
 
     start_dt = DateTime.utc_now()
     schedule_work(:after)
-    IO.puts "#{DateTime.utc_now()} :: scrape starats"
-    state =
-      APICaller.pull_search_result
-      |> update_result(flag, state)
+    # IO.puts "#{DateTime.utc_now()} :: scrape starats"
+    APICaller.pull_search_result
+    |> update_result(flag, state)
 
-   
-
-    IO.puts "#{DateTime.utc_now()} :: scrape ended"
+    # IO.puts "#{DateTime.utc_now()} :: scrape ended"
     end_dt = DateTime.utc_now()
-    IO.puts "#{DateTime.utc_now()} :: #{DateTime.diff(end_dt, start_dt)} - time elapsed for API call"
+    IO.puts "#{DateTime.utc_now()} :: SCV ##{num} :: #{DateTime.diff(end_dt, start_dt)} - time elapsed for API call"
 
     {:noreply, state}
   end
