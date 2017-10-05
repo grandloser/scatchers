@@ -5,7 +5,7 @@ defmodule Scatchers.Catchers do
 
   alias Scatchers.{APICaller, MisterSendo}
 
-  @interval 5_000
+  @interval 1_000
   @size_limit 150
 
   def start_link do
