@@ -48,13 +48,14 @@ defmodule Scatchers.Catchers do
       !in_cache?(href)
     end)
     |> Enum.each(fn x ->
+      Cachex.set(:cache,Floki.attribute(x, "href"), x)
       IO.puts "new one detected #{inspect Floki.attribute(x, "href")}"
       if(flag != :init) do
         notification_sendo(x)
       else
         Logger.info "init completed"
       end
-      Cachex.set(:cache,Floki.attribute(x, "href"), x)
+      
     end)
     %{}
   end
@@ -68,6 +69,6 @@ defmodule Scatchers.Catchers do
 
   def notification_sendo(x) do
     IO.puts "notification sent for #{inspect x}"
-    MisterSendo.send_email(x)
+    # MisterSendo.send_email(x)
   end
 end
