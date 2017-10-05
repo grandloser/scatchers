@@ -63,7 +63,7 @@ defmodule Scatchers.Catchers do
   def in_cache?(href) do
     case Cachex.get(:cache, href) do
       {:missing, _} -> 
-        Cachex.set(:cache,Floki.attribute(href, "href"), href)
+        Cachex.set(:cache, href, true)
         false
       _ -> true
     end
