@@ -71,6 +71,6 @@ defmodule Scatchers.Catchers do
 
   def notification_sendo(x) do
     IO.puts "notification sent for #{inspect x}"
-    # MisterSendo.send_email(x)
+    MisterSendo.send_email(x)
   end
 end
