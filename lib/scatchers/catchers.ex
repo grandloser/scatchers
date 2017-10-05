@@ -48,7 +48,7 @@ defmodule Scatchers.Catchers do
       !in_cache?(href)
     end)
     |> Enum.each(fn x ->
-      Cachex.set(:cache,Floki.attribute(x, "href"), x)
+      
       IO.puts "new one detected #{inspect Floki.attribute(x, "href")}"
       if(flag != :init) do
         notification_sendo(x)
@@ -62,7 +62,9 @@ defmodule Scatchers.Catchers do
 
   def in_cache?(href) do
     case Cachex.get(:cache, href) do
-      {:missing, _} -> false
+      {:missing, _} -> 
+        Cachex.set(:cache,Floki.attribute(href, "href"), href)
+        false
       _ -> true
     end
   end
