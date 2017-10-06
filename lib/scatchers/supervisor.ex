@@ -7,7 +7,7 @@ defmodule Scatchers.Supervisor do
 
    def init(:ok) do
 
-    children = Enum.reduce(1.. 5, [], fn num, acc -> 
+    children = Enum.reduce(1.. 1, [], fn num, acc -> 
       acc ++ [worker(Scatchers.Catchers, [num], [restart: :transient, id: num])]
     end)
 

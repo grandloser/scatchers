@@ -5,8 +5,9 @@ defmodule Scatchers.MisterSendo do
   def send_email(item) do
     ext = extract_data(item)
     new_email
-    |> to("brightbreath@gmail.com")
-    |> cc("firefocs@gmail.com")
+    |> to("firefocs@gmail.com")
+    # |> to("brightbreath@gmail.com")
+    # |> cc("firefocs@gmail.com")
     |> from("no-reply@busanmaninseoul.com")
     |> subject("[#{ext.price}] #{ext.translated_subject}")
     |> put_html_layout({Scatchers.LayoutView, "email.html"})
@@ -19,7 +20,10 @@ defmodule Scatchers.MisterSendo do
     image = extract_image(item)
     subject = extract_subject(item)
     price = extract_price(item)
+
+    IO.puts "#{link}\n #{image}\n #{subject}\n #{price}"
     translated_subject = APICaller.translate_to_korean(subject)
+    IO.puts "translate #{translated_subject}"
 
     %{
       link: link,
