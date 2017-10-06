@@ -22,14 +22,15 @@ config :scatchers, Scatchers.Mailer,
   adapter: Bamboo.SMTPAdapter,
   server: "smtp.gmail.com",
   port: 465,
-  username: System.get_env("EMAIL_ID"),
-  password: System.get_env("EMAIL_PW"),
+  # username: System.get_env("EMAIL_ID"),
+  username: "busanmaninseoul@gmail.com",
+  password: "qntksaos2",
   tls: :if_available, # can be `:always` or `:never`
   ssl: true, # can be `true`
   retries: 1
 
 config :scatchers, Scatchers.APICaller,
-  google_api_key: System.get_env("GOOGLE_API_KEY")
+  google_api_key: "AIzaSyBuvjhdBp79940XLERwklJFGDFAiRb2NTY"
 
 
 config :logger,
