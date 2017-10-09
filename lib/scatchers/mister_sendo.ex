@@ -17,6 +17,7 @@ defmodule Scatchers.MisterSendo do
 
   def extract_data(item) do
     link = extract_link(item)
+    link = "https://www.mercari.com/jp/search/?keyword=%E3%83%99%E3%82%A2%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF"
     image = extract_image(item)
     subject = extract_subject(item)
     price = extract_price(item)
