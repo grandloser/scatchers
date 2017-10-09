@@ -53,6 +53,7 @@ defmodule Scatchers.Catchers do
       if(flag != :init) do
         notification_sendo(x)
       else
+        # notification_sendo(x)
         Logger.info "init completed"
       end
       
@@ -70,7 +71,7 @@ defmodule Scatchers.Catchers do
   end
 
   def notification_sendo(x) do
-    IO.puts "notification sent for #{inspect x}"
     MisterSendo.send_email(x)
+    IO.puts "notification sent for #{inspect x}"
   end
 end
