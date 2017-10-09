@@ -67,7 +67,6 @@ defmodule Scatchers.Catchers do
         false
       _ -> true
     end
-    false
   end
 
   def notification_sendo(x) do
