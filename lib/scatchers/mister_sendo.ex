@@ -5,9 +5,9 @@ defmodule Scatchers.MisterSendo do
   def send_email(item) do
     ext = extract_data(item)
     new_email
-    |> to("firefocs@gmail.com")
-    # |> to("brightbreath@gmail.com")
-    # |> cc("firefocs@gmail.com")
+    # |> to("firefocs@gmail.com")
+    |> to("brightbreath@gmail.com")
+    |> cc("firefocs@gmail.com")
     |> from("no-reply@busanmaninseoul.com")
     |> subject("[#{ext.price}] #{ext.translated_subject}")
     |> put_html_layout({Scatchers.LayoutView, "email.html"})

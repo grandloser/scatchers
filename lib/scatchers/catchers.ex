@@ -53,7 +53,6 @@ defmodule Scatchers.Catchers do
       if(flag != :init) do
         notification_sendo(x)
       else
-        notification_sendo(x)
         Logger.info "init completed"
       end
       
