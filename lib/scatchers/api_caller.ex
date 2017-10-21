@@ -17,7 +17,7 @@ defmodule Scatchers.APICaller do
     {:ok, resp} = HTTPoison.get(url, headers, [timeout: 50_000, recv_timeout: 50_000])
     res = Floki.find(resp.body, ".items-box")
     |> Enum.map(fn x -> Floki.find(x, "a") end)
-    |> IO.inspect
+    # |> IO.inspect
   end
 
   def translate_to_korean(txt) do
