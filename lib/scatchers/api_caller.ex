@@ -3,7 +3,7 @@ defmodule Scatchers.APICaller do
   def pull_search_result do
     # IO.puts "#{DateTime.utc_now()} :: API call start"
     # url = "https://www.mercari.com/jp/search/?keyword=%E3%83%99%E3%82%A2%E3%83%96%E3%83%AA%E3%83%83%E3%82%AF"
-    url = "https://us.hideproxy.me/go.php?u=PUUhtIF1t%2BV09aLxElOxsyNBxJcbqkhc3EkBE27RPXjr%2FN3C3hnU0RWrUb5MkWXA9uwjEVsn0CPROb7XPf3GfwV%2BOAigki8EOpbJRdxMhCGas6QUj1yBOdoruCY0&b=5&f=norefer" 
+    url = "https://us.hideproxy.me/go.php?u=3WXBF5FaZtvzHUAEjnPcDzjHXH5xU2zGCIJqVVoHVEtUn5SOlYyJMRgB2G6%2FxzJXdt7xaqSXIoivixK1YM2vGoJQMTS4lwp%2FbkczBZ70Wsxd1%2F1E4lwnxFQr%2F5cz&b=5&f=norefer" 
     headers = ["accept-encoding": "gzip, deflate, br",
                "accept-language": "en-US,en;q=0.8,ko;q=0.6",
                "upgrade-insecure-requests": "1",
@@ -11,7 +11,7 @@ defmodule Scatchers.APICaller do
                "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
                "cache-control": "max-age=0",
                "authority": "us.hideproxy.me",
-               "cookie": "s=7rk290n5ur134pbmqi0gicoe81; c[nr-data.net][/][JSESSIONID]=bca5ff77fa9c29a7%21SEC; _ga=GA1.2.1790029790.1507523816; _gid=GA1.2.508547106.1508612315; c[mercari.com][/][merCtx]=%22%22"
+               "cookie": "s=6scknffclr05pucb5j940j2rq0; c[mercari.com][/][merCtx]=%22%22; _ga=GA1.2.1790029790.1507523816; _gid=GA1.2.149312154.1510890269'"
               ]
 
     {:ok, resp} = HTTPoison.get(url, headers, [timeout: 50_000, recv_timeout: 50_000])
